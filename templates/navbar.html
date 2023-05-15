@@ -1,0 +1,61 @@
+{% block head %} 
+  
+<style>
+  .facon{
+     margin-right: 1.5rem!important;
+    margin-left: 3.5rem!important;
+  }
+</style>
+    
+    
+{% endblock %}
+
+<nav id="non-printable" class="navbar navbar-expand-lg navbar-dark bg-dark" >
+    <div class="container-fluid">
+      <a id="non-printable" class="navbar-brand" href="{{url_for('addrecord')}}" style="color: #007bff; font-weight: bold;">PLANET COMPUTERS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent"  style="margin-left: 1%; width: 10%;">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('addrecord')}}" style="color: white; font-size: medium;">Add Record</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('adddailyreport')}}" style="color: white; font-size: medium;">Add Daily Reports</a>
+          </li>
+          
+
+          <li  class="nav-item dropdown">
+            <a style="color: white; font-size: medium; " class="nav-link dropdown-toggle mx-4" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-file-lines" style="font-size: 23px;"></i>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a style="color: black; font-size: medium; font-weight: bold;" class="dropdown-item text-uppercase" href="{{url_for('viewrecord')}}">View Record</a>
+              <a style="color: black; font-size: medium; font-weight: bold;" class="dropdown-item text-uppercase" href="{{url_for('viewdailyreport')}}">View Daily Report</a>
+            </div>
+          </li>
+          
+        
+        </ul>
+
+        <li class="nav-item dropdown">
+          <a style="color: white; font-size: medium; " class="nav-link dropdown-toggle facon" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user" style="font-size: 21px;"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a style="color: black; font-size: medium; font-weight: bold;" class="dropdown-item text-uppercase" href="#">{{name}}</a>
+            <a onclick="return confirm('Are you sure you want to delete this User?');" style="color: black; font-size: medium; font-weight: 400; " class="dropdown-item" href="{{url_for('deleteuser')}}">Delete User</a>
+            <a style="color: black; font-size: medium; font-weight: 400;" class="dropdown-item" href="{{url_for('update')}}">Update User</a>
+            <a style="color: black; font-size: medium; font-weight: 400;" class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
+          </div>
+        </li>
+
+
+        
+
+      </div>
+    </div>
+    
+  </nav>

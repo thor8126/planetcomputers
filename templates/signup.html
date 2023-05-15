@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+{{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
+
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <h3>Welcome</h3>
+            <h4 style="font-size: 20px;">to</h4>
+            <h2>Planet Computers</h2>
+            <br>
+            <p style="font-size: small; margin-top: 30px; margin-left: 5px; color: white;">Already have an account?</p>
+            <a class="login100-form-btn" style="margin-top: -19px; margin-left: 35px; color: black; background-color: white;" href="{{url_for('login')}}">Login</a>
+            <br />
+        </div>
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Signup</h3>
+                    <div class="row register-form">
+                        <form method="POST">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{ form.hidden_tag() }}
+                                    {{form.name(class="form-control",placeholder="Full Name *")}}
+                                </div>
+                                <div class="form-group">
+                                    {{form.username(class="form-control",placeholder="Username *")}}
+                                </div>
+                                <div class="form-group">
+                                    {{form.password_hash(class="form-control",placeholder="Password *")}}
+                                </div>
+                                <div class="form-group">
+                                    {{form.password_hash2(class="form-control",placeholder="Confirm Password *")}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form.email(class="form-control",placeholder="Email *")}}
+                                </div>
+                                <div class="form-group">
+                                    {{form.mobile(class="form-control",placeholder="Mobile *")}}
+                                </div>
+                                <div class="form-group" style="margin-right: 30%;">
+                                    
+                                    {{form.submit(class="btnRegister")}}
+                                </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

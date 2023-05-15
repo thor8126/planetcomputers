@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% include 'navbar.html' %}
+
+{% block content %}
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+{{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
+
+
+
+
+<div>
+
+  <h1 class="my-4" style="color: white; text-align: center;">WELCOME TO PLANET COMPUTERS</h1>
+
+</div>
+
+
+{% endblock %}

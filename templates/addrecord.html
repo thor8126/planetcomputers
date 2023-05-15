@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% include 'navbar.html' %}
+{% block content %}
+
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+{{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
+
+
+<h1 style="text-align: center; color: white; margin-top: 20px; font-weight: bold;">ADD RECORDS</h1>
+<br>
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form method="POST" >
+        {{ form.hidden_tag() }}
+        {{ form.service_type.label(class="form-label font-weight-bold text-uppercase ") }}
+        {{form.service_type(class="input--style-5 my-2",placeholder="Enter Service Type")}}
+        <br>
+        {{ form.product_name.label(class="form-label font-weight-bold text-uppercase") }}
+        {{form.product_name(class="input--style-5 my-2",placeholder="Enter Product Name")}}
+        <br>
+        {{ form.serial_no.label(class="form-label font-weight-bold text-uppercase") }}
+        {{form.serial_no(class="input--style-5 my-2",placeholder="Enter Product Serial Number")}}
+        <br>
+        {{ form.service_cost.label(class="form-label font-weight-bold text-uppercase") }}
+        {{form.service_cost(class="input--style-5 my-2",placeholder="Enter Service Cost")}}
+        <br>
+        {{ form.remarks.label(class="form-label font-weight-bold text-uppercase") }}
+        {{form.remarks(class="input--style-5 my-2",placeholder="Remark")}}
+        <br>
+        {{ form.customer_name.label(class="form-label font-weight-bold text-uppercase") }}
+        {{form.customer_name(class="input--style-5 my-2",placeholder="Enter Customer Name")}}
+        <br>
+        {{ form.customer_email.label(class="form-label font-weight-bold text-uppercase") }}
+        {{form.customer_email(class="input--style-5 my-2",placeholder="Enter Customer Email")}}
+        <br>
+        {{ form.customer_mobile.label(class="form-label font-weight-bold text-uppercase") }}
+        {{form.customer_mobile(class="input--style-5 my-2",placeholder="Enter Customer Mobile")}}
+        <br>
+        {{ form.customer_address.label(class="form-label font-weight-bold text-uppercase") }}
+        {{form.customer_address(class="input--style-5 my-2",placeholder="Enter Customer Address")}}
+        <br>
+        {{form.submit(class="btn btn-primary")}}
+    </form>
+</div>
+<br><br>
+
+
+
+{% endblock %}

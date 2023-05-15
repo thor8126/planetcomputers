@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+{% include 'navbar.html' %}
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+{{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+{% endfor %}
+
+
+
+
+<center>
+    <h1 style="color: white; margin-top: 20px; font-weight: bold;">VIEW DAILY REPORTS</h1>
+</center>
+<br>
+
+{% if user_date %}
+<a href="{{url_for('viewdailyreport')}}"><i class="fas fa-circle-arrow-left" style="font-size: 30px; color: white;"></i></a>
+
+{% endif %}
+<form style="margin-left: 36%;" class="d-flex" method="POST" action="/filter_daybook" >
+    {{form.hidden_tag()}}
+    {{form.date(class="form-control me-2", placeholder="Enter Date", style="width: 200px;")}}
+    {{form.submit(class="btn btn-primary", value="Search", style="width: 100px;")}}
+    </button>
+  </form>
+
+
+<table style="background-color: white; margin-top: 2%;" class="table table-hover table-bordered table-striped">
+
+    <tr>
+        <th>ID</th>
+        <th>DATE</th>
+        <th>ITEM NAME</th>
+        <th>BUYING PRICE</th>
+        <th>SELLING PRICE</th>
+        <th>PROFIT</th>
+        <th>REMARKS</th>
+        <th style="width: 7%;">ACTION</th>
+    </tr>
+    {% for report in report %}
+    <tr>
+        <td>{{report.id}}</td>
+        <td>{{report.date_added}}</td>
+        <td>{{report.item_name}}</td>
+        <td>{{report.buying_price}}</td>
+        <td>{{report.selling_price}}</td>
+        <td class="p_l">{{report.profit_loss}}</td>
+        <td>{{report.remarks}}</td>
+        <td><a onclick="return confirm('Are you sure you want to delete this item?');" style="color: red; font-weight: 700; font-size: 18px;" href="{{url_for('deletedailyreport',id=report.id)}}"><i class="fa-solid fa-trash"></i></a></td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total Profit/Loss:</td>
+        <td class="total"></td>
+    </tr>
+
+
+
+</table>
+
+
+<script>
+
+    
+
+
+
+    var p_l = document.getElementsByClassName("p_l");
+
+    for (var i = 0; i < p_l.length; i++) {
+        if (p_l[i].innerHTML < 0) {
+            p_l[i].style.backgroundColor = "#e55a5a";
+        } else {
+            p_l[i].style.backgroundColor = "#3c993c";
+        }
+    }
+
+
+
+    var total = 0;
+    for (var i = 0; i < p_l.length; i++) {
+        total += parseInt(p_l[i].innerHTML);
+        function numberWithCommas(x) {
+            return "₹" + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        document.getElementsByClassName("total")[0].innerHTML = numberWithCommas(total);
+    }
+    
+
+
+   
+
+    // var total = document.getElementsByClassName("total")[0].innerHTML;
+    // if (total < 0) {
+    //     document.getElementsByClassName("total")[0].style.color = "red";
+    // } else {
+    //     document.getElementsByClassName("total")[0].style.color = "green";
+    // }
+</script>
+
+
+{% endblock %}
+
+
